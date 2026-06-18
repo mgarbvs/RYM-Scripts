@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+*.png
+!tests/ok_computer_card.png
+*.jpg
+!tests/sample_cover.jpg
+*.tmp
