@@ -7,6 +7,8 @@
 // The cover-art CDN (cdn.sonemic.net / e.snmc.io) sends Access-Control-Allow-
 // Origin: *, so we load the cover with a plain crossOrigin image — no GM APIs
 // needed. Works on Greasemonkey, Tampermonkey, and Violentmonkey alike.
+// @updateURL    https://raw.githubusercontent.com/mgarbvs/RYM-Scripts/main/rym-card.user.js
+// @downloadURL  https://raw.githubusercontent.com/mgarbvs/RYM-Scripts/main/rym-card.user.js
 // @grant        none
 // @run-at       document-idle
 // ==/UserScript==
