@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         RYM Album Card
-// @version      2.1.0
+// @version      2.2.0
 // @description  One-click: compose a shareable album card PNG from an RYM release page and copy it to the clipboard.
 // @author       michael.garbus@gmail.com
 // @match        https://rateyourmusic.com/release/*
@@ -112,7 +112,10 @@ function injectButton() {
 
     if (window.ClipboardItem && navigator.clipboard && navigator.clipboard.write) {
       navigator.clipboard.write([
-        new ClipboardItem({ 'image/png': pngPromise }),
+        new ClipboardItem({
+          'image/png':  pngPromise,
+          'text/plain': new Blob([window.location.href], { type: 'text/plain' }),
+        }),
       ])
         .then(() => setButtonState(btn, 'done'))
         .catch(err => {
