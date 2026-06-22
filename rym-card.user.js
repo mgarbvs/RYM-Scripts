@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         RYM Album Card
-// @version      2.2.0
+// @version      2.3.0
 // @description  One-click: compose a shareable album card PNG from an RYM release page and copy it to the clipboard.
 // @author       michael.garbus@gmail.com
 // @match        https://rateyourmusic.com/release/*
@@ -343,12 +343,12 @@ function renderCard(meta, coverImg) {
       let titleH = 0;
       if (meta.title) {
         setFont(mc, SZ_TITLE, '600');
-        titleLines = wrapText(mc, meta.title, titleMaxW);
+        titleLines = wrapText(mc, meta.title + (meta.year ? ` (${meta.year})` : ''), titleMaxW);
         const tlh = textH(mc, SZ_TITLE, '600');
         titleH = titleLines.length * (tlh + 4) + LINE_GAP;
       }
 
-      const metaText  = meta.year || '';
+      const metaText  = '';
       const metaH     = metaText ? textH(mc, SZ_META) + LINE_GAP : 0;
 
       // Right-side rating block: rating line + optional count line, anchored to title baseline.

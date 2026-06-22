@@ -8,3 +8,9 @@ venv/
 *.jpg
 !tests/sample_cover.jpg
 *.tmp
+
+# Personal Soulseek helper (do NOT commit to public repo)
+rym-soulseek.user.js
+SlskSearch.applescript
+HANDOFF.md
+.DS_Store
