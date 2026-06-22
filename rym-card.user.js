@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         RYM Album Card
-// @version      2.3.0
+// @version      2.3.1
 // @description  One-click: compose a shareable album card PNG from an RYM release page and copy it to the clipboard.
 // @author       michael.garbus@gmail.com
 // @match        https://rateyourmusic.com/release/*
@@ -25,7 +25,7 @@
      document.querySelector('.release_sec_genres')
      document.querySelector('.release_descriptors')
      document.querySelector('span.avg_rating')
-     document.querySelector('span.issue_date')
+     document.querySelector('span.issue_year')
    ============================================================ */
 const SEL = {
   // The release title lives in a div; the first text node is the album name,
@@ -40,8 +40,8 @@ const SEL = {
   secondaryGenres: '.release_sec_genres a.genre',
   // Descriptor tags are the fallback when no secondary genres exist.
   descriptors:     '.release_descriptors a.tag',
-  // Year: the issue date span; we pull a 4-digit year from its text.
-  issueDate:       'span.issue_date',
+  // Year: the first issue year span (primary release); we pull a 4-digit year from its text.
+  issueDate:       'span.issue_year',
   // Average rating.
   avgRating:       'span.avg_rating',
   // Number-of-ratings span; text looks like "from 444 ratings".
