@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         RYM Album Card
-// @version      2.3.1
+// @version      2.4.0
 // @description  One-click: compose a shareable album card PNG from an RYM release page and copy it to the clipboard.
 // @author       michael.garbus@gmail.com
 // @match        https://rateyourmusic.com/release/*
@@ -334,7 +334,14 @@ function renderCard(meta, coverImg) {
           ratingBlockW = Math.max(ratingBlockW, mc.measureText(`${meta.ratingCount} ratings`).width);
         }
       }
-      const titleMaxW = (W - 2 * PAD) - (ratingBlockW ? Math.ceil(ratingBlockW) + GUTTER_GAP : 0);
+      // Year suffix drawn inline after the last title line in a smaller, grey font.
+      const SZ_YEAR     = 34;
+      const YEAR_COLOR  = '#888888';
+      const yearSuffix  = meta.year ? ` · ${meta.year}` : '';
+      setFont(mc, SZ_YEAR, 'normal');
+      const yearSuffixW = yearSuffix ? Math.ceil(mc.measureText(yearSuffix).width) + 4 : 0;
+
+      const titleMaxW = (W - 2 * PAD) - (ratingBlockW ? Math.ceil(ratingBlockW) + GUTTER_GAP : 0) - yearSuffixW;
 
       // Title wraps — compute lines once here so the height measurement and
       // the draw pass use the same line count.  A single-line measure would
@@ -343,7 +350,7 @@ function renderCard(meta, coverImg) {
       let titleH = 0;
       if (meta.title) {
         setFont(mc, SZ_TITLE, '600');
-        titleLines = wrapText(mc, meta.title + (meta.year ? ` (${meta.year})` : ''), titleMaxW);
+        titleLines = wrapText(mc, meta.title, titleMaxW);
         const tlh = textH(mc, SZ_TITLE, '600');
         titleH = titleLines.length * (tlh + 4) + LINE_GAP;
       }
@@ -431,8 +438,17 @@ function renderCard(meta, coverImg) {
         setFont(ctx, SZ_TITLE, '600');
         ctx.fillStyle = PALETTE.textPrimary;
         const lineH = textH(ctx, SZ_TITLE, '600');
-        for (const line of titleLines) {
-          ctx.fillText(line, PAD, y + lineH);
+        for (let i = 0; i < titleLines.length; i++) {
+          const baseline = y + lineH;
+          ctx.fillText(titleLines[i], PAD, baseline);
+          if (i === titleLines.length - 1 && yearSuffix) {
+            const lineW = ctx.measureText(titleLines[i]).width;
+            setFont(ctx, SZ_YEAR, 'normal');
+            ctx.fillStyle = YEAR_COLOR;
+            ctx.fillText(yearSuffix, PAD + lineW, baseline);
+            setFont(ctx, SZ_TITLE, '600');
+            ctx.fillStyle = PALETTE.textPrimary;
+          }
           y += lineH + 4;
         }
         y += LINE_GAP;
