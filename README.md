@@ -3,7 +3,8 @@
 A userscript (Tampermonkey / Violentmonkey / Greasemonkey) that adds a **"Copy album card"** button to any RateYourMusic release page. One click composes a clean PNG — cover art, artist, album title, year, rating, and genre pills — and copies it to your clipboard so you can paste it directly into iMessage, or anywhere else really.
 
 
-<img width="600" height="795" alt="image" src="https://github.com/user-attachments/assets/c8ed38d9-7501-41b2-8568-eb22f893f089" />
+https://rateyourmusic.com/release/album/ween/12-golden-country-greats/<img width="1200" height="1590" alt="image" src="https://github.com/user-attachments/assets/23f9a811-9132-4b69-b8c7-856163aa0c57" />
+
 
 
 ## Why a userscript?
