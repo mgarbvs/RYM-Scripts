@@ -1,15 +1,14 @@
 # RYM Album Card — Userscript
 
-A userscript (Tampermonkey / Violentmonkey / Greasemonkey) that adds a **"Copy album card"** button to any RateYourMusic release page. One click composes a clean PNG — cover art, artist, album title, year, rating, and genre pills — and copies it to your clipboard so you can paste it directly into iMessage, or anywhere else really.
+A userscript (Tampermonkey / Violentmonkey / Greasemonkey) that adds a **"Copy album card"** button to any RateYourMusic release page. Makes a picture of cover art, artist, album title, year, rating, and genre pills — and copies it to your clipboard so you can paste it directly into iMessage, or anywhere else really.
 
-
-https://rateyourmusic.com/release/album/ween/12-golden-country-greats/<img width="1200" height="1590" alt="image" src="https://github.com/user-attachments/assets/23f9a811-9132-4b69-b8c7-856163aa0c57" />
+<img width="1200" height="1590" alt="image" src="https://github.com/user-attachments/assets/23f9a811-9132-4b69-b8c7-856163aa0c57" />
 
 
 
 ## Why a userscript?
 
-RateYourMusic is protected by Cloudflare. Any automated tool outside the browser gets a 403. A userscript runs inside your already-authenticated, already-loaded browser tab, so it can read the live DOM without scraping anything.
+RateYourMusic is protected by Cloudflare. Userscript is the easiest tool for the job without being "scraping".
 
 ## Installation
 
@@ -31,8 +30,6 @@ RateYourMusic is protected by Cloudflare. Any automated tool outside the browser
 
 1. Install [Greasemonkey](https://www.greasespot.net).
 2. Greasemonkey icon → **"New user script…"** → paste the contents of `rym-card.user.js` and save.
-
-The script uses **no GM APIs** (`@grant none`), so no permission prompts appear — the cover is loaded with a plain CORS image from RYM's CDN.
 
 ### From a URL (if hosted)
 
